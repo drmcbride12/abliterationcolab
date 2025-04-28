@@ -1,3 +1,5 @@
+# --- START OF FILE abliterate.py ---
+
 import gc
 import sys
 import torch
@@ -89,7 +91,8 @@ if __name__ == "__main__":
     )
 
     if isinstance(config["input-refusal"], str):
-        print(f"Loading refusal tensor from {config["input-refusal"]}...")
+        # --- FIX 1: Changed double quotes to single quotes for dictionary key ---
+        print(f"Loading refusal tensor from {config['input-refusal']}...")
         refusal_dir = torch.load(config["input-refusal"])
     else:
         print("Computing refusal tensor...")
@@ -98,7 +101,8 @@ if __name__ == "__main__":
         )
 
     if isinstance(config["output-refusal"], str):
-        print(f"Saving refusal tensor to {config["output-refusal"]}...")
+        # --- FIX 2: Changed double quotes to single quotes for dictionary key ---
+        print(f"Saving refusal tensor to {config['output-refusal']}...")
         torch.save(refusal_dir, config["output-refusal"])
 
     if not isinstance(config["output"], str):
@@ -126,6 +130,9 @@ if __name__ == "__main__":
         config["skip-end"],
         config["scale-factor"],
     )
-    print(f"Saving abliterated model to {config["output"]}...")
+    # --- FIX 3: Changed double quotes to single quotes for dictionary key ---
+    print(f"Saving abliterated model to {config['output']}...")
     model.save_pretrained(config["output"])
     tokenizer.save_pretrained(config["output"])
+
+# --- END OF FILE abliterate.py ---
